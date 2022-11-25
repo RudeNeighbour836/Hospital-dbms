@@ -21,7 +21,7 @@ function login()
 			$_SESSION['admin'] = $name;
 			header("Location: admin/");
 		}
-		elseif ($type=="Doctor" OR $type=="NormalDoctor" OR $type=="DentalDoctor" OR $type=="WomenDoctor") {
+		elseif ($type=="Doctor") {
 			@session_start();
 			$_SESSION['type'] = $type;
 			$_SESSION['doctor'] = $name;
@@ -81,20 +81,6 @@ function admindetails()
 	}
 }
 
-function bursardetails()
-{
-	@session_start();
-	require("connect.php");
-	$type = $_SESSION['type'];
-	$username = $_SESSION['bursar'];
-	$sql = "SELECT * FROM `users` WHERE `username`='$username' AND `type`='$type'";
-	$query = mysqli_query($conn, $sql);
-	while ($row =mysqli_fetch_array($query)) {
-		echo "Welcome, <i>".$row['fname']." ".$row['sname']."</i> (<a href='../logout.php'>Logout</a>)";
-	}
-}
-
-
 function doctordetails()
 {
 	@session_start();
@@ -120,20 +106,6 @@ function receptiondetails()
 		echo "Welcome, <i>".$row['fname']." ".$row['sname']."</i> (<a href='../logout.php'>Logout</a>)";
 	}
 }
-
-function laboratorydetails()
-{
-	@session_start();
-	require("connect.php");
-	$type = $_SESSION['type'];
-	$username = $_SESSION['laboratory'];
-	$sql = "SELECT * FROM `users` WHERE `username`='$username' AND `type`='$type'";
-	$query = mysqli_query($conn, $sql);
-	while ($row =mysqli_fetch_array($query)) {
-		echo "Welcome, <i>".$row['fname']." ".$row['sname']."</i> (<a href='../logout.php'>Logout</a>)";
-	}
-}
-
 function pharmacydetails()
 {
 	@session_start();

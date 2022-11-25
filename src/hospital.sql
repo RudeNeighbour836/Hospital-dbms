@@ -85,22 +85,9 @@ CREATE TABLE `patient` (
 --
 
 INSERT INTO `patient` (`id`, `fname`, `sname`, `email`, `address`, `phone`, `sex`, `bloodgroup`, `birthyear`) VALUES
-(1, 'Florian', 'Kipeta', 'florianephraim@gmail.com', '8', '0654507180', 'Male', 'A', 1998);
+(1, 'John', 'Doe', 'johndoe@gmail.com', '8', '0654507180', 'Male', 'A', 1998);
 
 -- --------------------------------------------------------
-
---
--- Table structure for table `rooms`
---
-
-CREATE TABLE `rooms` (
-  `room_no` int(11) NOT NULL,
-  `room_name` varchar(100) NOT NULL,
-  `patientsinroom` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
--- --------------------------------------------------------
-
 --
 -- Table structure for table `users`
 --

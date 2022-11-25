@@ -19,7 +19,7 @@ if (empty($_SESSION['pharmacy']) OR empty($_SESSION['type'])) {
 	 ?>
 		<div class="right">
 			<div style="padding-left:20px;padding-top:20px;">
-			Welcome, <b>Pharmatist</b><br><br>
+			Welcome, <b>Pharmacist</b><br><br>
 			In your Dashboard you can do the following jobs,<br><br>
 			<ol>
 				<li>View Suggested Medicine</li><br>

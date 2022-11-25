@@ -46,7 +46,7 @@ if (empty($_SESSION['admin']) OR empty($_SESSION['type'])) {
 				<?php
 				require_once "../includes/connect.php";
 
-				$sql = "SELECT * FROM `users` WHERE `type`='NormalDoctor' OR `type`='DentalDoctor' OR `type`='WomenDoctor'";
+				$sql = "SELECT * FROM `users` WHERE `type`='Doctor'";
 				
 				$query = mysqli_query($conn, $sql);
 				echo "<br><b style='color:#408080; font-family:Arial; font-size:35px;'>".$row = mysqli_num_rows($query)."</b>"; 

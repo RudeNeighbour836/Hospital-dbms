@@ -22,7 +22,7 @@ function viewpatient()
 {
 	$id = $_GET['id'];
 	require 'connect.php';
-	$sql = "SELECT * FROM `patient` WHERE `id`='$id'";
+	$sql = "SELECT * FROM `patient` WHERE `id`='$id' ";
 	$query = mysqli_query($conn, $sql);
 	while ($row = mysqli_fetch_array($query)) {
 		$year = date('Y') - $row['birthyear'];
@@ -80,7 +80,7 @@ function searchpatients()
 		echo "<td>P-".$row['id']."</td>";
 		echo "<td>".$row['fname']."</td>";
 		echo "<td>".$row['sname']."</td>";
-		echo "<td>".$row['phone']."</td>";
+		echo "<td>".$row[AES_DECRYPT('phone', '[PRIVATE]')]."</td>";
 		echo "<td>".$row['sex']."</td>";
 		echo "<td><center><a href='viewpatient.php?id=".$row['id']."'>View</a></center></td>";
 		echo "<td><center><a href='editpatient.php?id=".$row['id']."'><img src='../assets/img/glyphicons-151-edit.png' height='16px' width='17px'></a></center></td>";
@@ -104,7 +104,7 @@ function addpatient()
 
 	require_once "connect.php";
 
-	$sql = "INSERT INTO `patient` VALUES ('','$fname','$sname','$email','$address','$phone','$gender','$bloodgroup','$birthyear')";
+	$sql = "INSERT INTO `patient` VALUES ('','$fname','$sname','$email',AES_ENCRYPT('$address', '[PRIVATE]'),'$phone','$gender','$bloodgroup','$birthyear')";
 	$query = mysqli_query($conn, $sql);
 	if (!empty($query)) {
 		echo "<br><b style='color:#008080;font-size:14px;font-family:Arial;'>Patient is Succesifully Added</b><br><br>";
@@ -144,6 +144,7 @@ function assigntodoctor()
 
 function updatepatient()
 {
+	require 'connect.php';
 	$id = $_GET['id'];
 	$fname = trim(htmlspecialchars($_POST['fname']));
 	$sname = trim(htmlspecialchars($_POST['sname']));
@@ -156,7 +157,7 @@ function updatepatient()
 
 	require_once "connect.php";
 
-	$sql = "UPDATE `patient` SET `fname`='$fname',`sname`='$sname',`email`='$email',`address`='$address',`phone`='$phone',`sex`='$gender',`bloodgroup`='$bloodgroup',`birthyear`='$birthyear' WHERE `id`='$id'";
+	$sql = "UPDATE `patient` SET `fname`='$fname',`sname`='$sname',`email`='$email',`address`=AES_ENCRYPT('$address', '[PRIVATE]'),`phone`='$phone',`sex`='$gender',`bloodgroup`='$bloodgroup',`birthyear`='$birthyear' WHERE `id`='$id'";
 	//$sql = "INSERT INTO `` VALUES ('','$fname','$sname','$email','$address','$phone','$gender','$bloodgroup','$birthyear')";
 	$query = mysqli_query($conn, $sql);
 	if (!empty($query)) {

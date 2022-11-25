@@ -29,7 +29,7 @@ function adduser()
 	$sql1 = "SELECT * FROM `users` WHERE `username`='$username'";
 	$query1 = mysqli_query($conn, $sql1);
 	if (mysqli_num_rows($query1)==0) {
-		$sql = "INSERT INTO `users` VALUES ('$username','$pass','$fname','$sname','$type')";
+		$sql = "INSERT INTO `users` VALUES ('$username',$pass','$fname','$sname','$type')";
 		$query = mysqli_query($conn, $sql);
 		if (!empty($query)) {
 			echo "<br><b style='color:#008080;font-size:14px;font-family:Arial;'>User is Succesifully Added</b>";
@@ -46,7 +46,6 @@ function adduser()
 function updateuser()
 {
 	require("connect.php");
-	//$username = trim(htmlspecialchars($_POST['username']));
 	$fname = trim(htmlspecialchars($_POST['fname']));
 	$sname = trim(htmlspecialchars($_POST['sname']));
 	$type = trim(htmlspecialchars($_POST['type']));
@@ -56,7 +55,7 @@ function updateuser()
 
 	$name = $_GET['name'];
 	
-		$sql = "UPDATE `users` SET `fname`='$fname',`sname`='$sname',`type`='$type',`password`='$pass' WHERE `username`='$name'";
+		$sql = "UPDATE `users` SET `fname`='$fname',`sname`='$sname',`type`='$type',`password`= '$pass' WHERE `username`='$name'";
 		$query = mysqli_query($conn, $sql);
 		if (!empty($query)) {
 			echo "<br><b style='color:#008080;font-size:14px;font-family:Arial;'>User is Succesifully Updated</b>";
@@ -66,6 +65,7 @@ function updateuser()
 
 function settings()
 {
+	require("connect.php");
 	//$username = trim(htmlspecialchars($_POST['username']));
 	$fname = trim(htmlspecialchars($_POST['fname']));
 	$sname = trim(htmlspecialchars($_POST['sname']));

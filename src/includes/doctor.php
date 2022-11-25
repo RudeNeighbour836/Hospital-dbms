@@ -23,30 +23,6 @@ function recdoctor()
 }
 
 
-function labdoctor()
-{
-	require("connect.php");
-	$typee = $_SESSION['type'];
-	$sql = "SELECT * From `medication` WHERE `doctor_type`='$typee' AND `status`='labdoctor'";
-	$query = mysqli_query($conn, $sql);
-	while ($row = mysqli_fetch_array($query)) {
-		$ido = $row['patient_id'];
-		$sql2 = "SELECT * FROM `patient` WHERE `id`='$ido'";
-		$query2 = mysqli_query($conn, $sql2);
-		while ($row2 = mysqli_fetch_array($query2)) {
-			echo "<tr height=30px'>";
-			echo "<td>P-".$row2['id']."</td>";
-			echo "<td>".$row2['fname']."</td>";
-			echo "<td>".$row2['sname']."</td>";
-			echo "<td>".$row2['sex']."</td>";
-			echo "<td><center><a href='medicine.php?id=".$row['id']."'>view</a></center></td>";
-			echo "</tr>";
-		}
-		
-	}
-}
-
-
 function searchpatients()
 {
 			require("connect.php");

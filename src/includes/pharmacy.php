@@ -130,7 +130,6 @@ function medicine()
 
 function settings()
 {
-	//$username = trim(htmlspecialchars($_POST['username']));
 	$fname = trim(htmlspecialchars($_POST['fname']));
 	$sname = trim(htmlspecialchars($_POST['sname']));
 	$password2 = trim(htmlspecialchars($_POST['password2']));
